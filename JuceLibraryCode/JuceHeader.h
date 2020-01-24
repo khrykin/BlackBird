@@ -52,7 +52,7 @@ namespace ProjectInfo
 {
     const char* const  projectName    = "BlackFace";
     const char* const  companyName    = "Dmitry Khrykin";
-    const char* const  versionString  = "0.0.3";
-    const int          versionNumber  = 0x3;
+    const char* const  versionString  = "v0.0.2";
+    const int          versionNumber  = 0x2;
 }
 #endif
