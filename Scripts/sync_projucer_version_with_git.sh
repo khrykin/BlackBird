@@ -3,7 +3,7 @@ describe=$(git describe)
 version=${describe#"v"$"-*"}
 version=$(echo "$version" | sed -e 's/\([\-].*\)$//g')
 
-PROJUCER_PATH="/Users/khrykin/JUCE/extras/Projucer/Builds/MacOSX/build/Release/Projucer.app/Contents/MacOS/Projucer"
+[[ -z "$PROJUCER_PATH" ]] && { echo "Error: PROJUCER_PATH not set"; exit 1; }
 
 $PROJUCER_PATH --set-version $version ./BlackFace.jucer
 

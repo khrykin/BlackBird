@@ -14,7 +14,6 @@
 #include "DSPParameters.h"
 
 #include <cmath>
-#include <chrono>
 
 template<typename ValueType>
 class CustomOscillator {
