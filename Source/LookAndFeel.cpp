@@ -398,13 +398,13 @@ void HeaderLookAndFeel::positionComboBoxText(ComboBox &box, Label &label) {
 }
 
 Font getDefaultFont() {
-    static auto defaultFont = Typeface::createSystemTypefaceFor(BinaryData::Jost600Semi_otf,
-                                                                BinaryData::Jost600Semi_otfSize);
+    static auto defaultFont = Typeface::createSystemTypefaceFor(BinaryData::Jost600Semi_ttf,
+                                                                BinaryData::Jost600Semi_ttfSize);
     return defaultFont;
 }
 
 Font getDefaultBoldFont() {
-    static auto defaultBoldFont = Typeface::createSystemTypefaceFor(BinaryData::Jost700Bold_otf,
-                                                                    BinaryData::Jost700Bold_otfSize);
+    static auto defaultBoldFont = Typeface::createSystemTypefaceFor(BinaryData::Jost700Bold_ttf,
+                                                                    BinaryData::Jost700Bold_ttfSize);
     return defaultBoldFont;
 }

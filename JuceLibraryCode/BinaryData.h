@@ -8,11 +8,11 @@
 
 namespace BinaryData
 {
-    extern const char*   Jost600Semi_otf;
-    const int            Jost600Semi_otfSize = 39860;
+    extern const char*   Jost600Semi_ttf;
+    const int            Jost600Semi_ttfSize = 111068;
 
-    extern const char*   Jost700Bold_otf;
-    const int            Jost700Bold_otfSize = 39196;
+    extern const char*   Jost700Bold_ttf;
+    const int            Jost700Bold_ttfSize = 123996;
 
     extern const char*   sawwave_svg;
     const int            sawwave_svgSize = 595;

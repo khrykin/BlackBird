@@ -205,7 +205,7 @@ File BlackFaceAudioProcessor::getPresetsDirectory() {
         presetsFolder.createDirectory();
     }
 
-    std::cout << "presetsFolder: " << presetsFolder.getFullPathName() << "\n";
+    std::cout << "Presets directory: " << presetsFolder.getFullPathName() << "\n";
 
     return presetsFolder;
 }

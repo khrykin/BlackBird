@@ -276,7 +276,7 @@
 #endif
 
 #ifndef    JUCE_USE_DIRECTWRITE
- //#define JUCE_USE_DIRECTWRITE 1
+ #define   JUCE_USE_DIRECTWRITE 1
 #endif
 
 #ifndef    JUCE_DISABLE_COREGRAPHICS_FONT_SMOOTHING
@@ -392,13 +392,13 @@
  #define JucePlugin_EditorRequiresKeyboardFocus  0
 #endif
 #ifndef  JucePlugin_Version
- #define JucePlugin_Version                v0.0.1
+ #define JucePlugin_Version                0.0.1
 #endif
 #ifndef  JucePlugin_VersionCode
  #define JucePlugin_VersionCode            0x1
 #endif
 #ifndef  JucePlugin_VersionString
- #define JucePlugin_VersionString          "v0.0.1"
+ #define JucePlugin_VersionString          "0.0.1"
 #endif
 #ifndef  JucePlugin_VSTUniqueID
  #define JucePlugin_VSTUniqueID            JucePlugin_PluginCode

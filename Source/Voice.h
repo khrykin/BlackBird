@@ -111,11 +111,11 @@ private:
 
 class SineSound : public SynthesiserSound {
 public:
-    bool appliesToNote(int midiNoteNumber) override {
+    bool appliesToNote(int /* midiNoteNumber */) override {
         return true;
     };
 
-    bool appliesToChannel(int channelNumber) override {
+    bool appliesToChannel(int /*channelNumber */) override {
         return true;
     };
 };
@@ -196,14 +196,14 @@ public:
 
         lfo.setFrequency(currentNoteFrequency / std::pow(2, 5));
 
-        currentVelocity = 1.0 - (*parameters.velocityEnvelopeAmount) * (1.0 - velocity);
+        currentVelocity = 1.0f - (*parameters.velocityEnvelopeAmount) * (1.0f - velocity);
 
         processorChain.get<osc1Index>().setLevel(currentVelocity);
         processorChain.get<osc2Index>().setLevel(currentVelocity);
 
         updateOscillatorsFrequency();
 
-        if (modulationAmount) {
+        if (modulationAmount > 0.0f) {
             updateModulation();
         }
 
@@ -246,7 +246,7 @@ public:
         if (noteIsPlaying) {
             bool adsrWasActive = adsr.isActive();
 
-            if (currentOscillatorType != (OscillatorType) parameters.oscillatorType->load()) {
+            if (currentOscillatorType != OscillatorType((int) parameters.oscillatorType->load())) {
                 updateOscillatorsType();
             }
 
@@ -290,7 +290,7 @@ public:
     }
 
     inline void updateOscillatorsType() {
-        currentOscillatorType = (OscillatorType) parameters.oscillatorType->load();
+        currentOscillatorType = OscillatorType((int) parameters.oscillatorType->load());
 
         processorChain.get<osc1Index>().setTypeForFrequency(currentOscillatorType,
                                                             currentNoteFrequency);
@@ -401,7 +401,7 @@ private:
     float currentOsc2Frequency = 0.0;
     float currentOsc2AnalogFactor = 0.0;
 
-    OscillatorType currentOscillatorType = (OscillatorType) parameters.oscillatorType->load();
+    OscillatorType currentOscillatorType = OscillatorType((int) parameters.oscillatorType->load());
 
     bool noteIsPlaying = false;
 
