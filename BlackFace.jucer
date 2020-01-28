@@ -90,7 +90,7 @@
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" winWarningLevel="3"/>
         <CONFIGURATION isDebug="0" name="Release" winWarningLevel="3"/>
-        <CONFIGURATION isDebug="0" name="Release (x86)" winArchitecture="Win32" winWarningLevel="3"/>
+        <CONFIGURATION isDebug="0" name="Release" winArchitecture="Win32" winWarningLevel="3"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_opengl" path="JUCE/modules"/>
