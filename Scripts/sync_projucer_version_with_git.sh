@@ -11,3 +11,9 @@ project_dir="$scripts_dir/../"
 
 $PROJUCER_PATH --set-version $version "$project_dir./BlackFace.jucer"
 
+sed -E -i "" "s/AppVersion=[^\n]+/AppVersion=$version/" \
+  "$project_dir/Releases/Windows/BlackFace-Win32.iss"
+
+sed -E -i "" "s/AppVersion=[^\n]+/AppVersion=$version/" \
+  "$project_dir/Releases/Windows/BlackFace-x64.iss"
+	
