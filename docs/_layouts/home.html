@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+ <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5531376-8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-5531376-8');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="description" content="BlackFace - Software Synth Plugin" />
+    <meta name="author" content="Dmitry Khrykin" />
+    <meta name="viewport" content="width=775" />
+
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <title>BlackFace - Software Synth Plugin</title>
+</head>
+
+<body class="bg-near-black">
+    <header class="db cf overflow-hidden">
+        <div class="lead fl pa4 pa5-l">
+
+            {% include downloads_buttons.html %}
+            
+            <h2 class="f-headline near-white f1-m f3-s ma0 mt4 mb0">
+                BlackFace
+            </h2>
+            <p class="mt0 mb2 f4 f3-l db fw3 near-white o3 i lh-copy">
+                Simple, yet peculiar VST3/AU Synth
+            </p>
+            <p class="mt0 mb0 f4 f3-l db fw3 near-white o3 i lh-copy">
+                <a id="scrollDown" class="cyan dim no-underline" href="">Find out more >>></a>
+            </p>
+        </div>
+    </header>
+
+    <article class="export bg-white">
+        <div class="flex">
+            <div class="flex-grow-0 w-50 w-third-l">
+                <div class="pl4 pa4">
+                    <h4 class="f3 dib f3-s near-black mt0 mb2 mr2">
+                        Analog-inspired software synth with it's own voice
+                    </h4>
+                    <ul class="f5 fw5 dark-gray fw4 list lh-copy pl0">
+                        <li>Two 3-waveform unison oscillators</li>
+                        <li>Low-pass filter</li>
+                        <li>Single envelope for velocity, filter cutoff and resonance</li>
+                        <li>Built-in Reverb</li>
+                        <li>Wheel modulation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex-grow-1 relative" style="max-width:1100px;">
+                <div class="absolute cover"
+                     style="top: -5.5rem; z-index:9999; bottom: 0; left:0; right: 0;background-position: left top;background-image:url(./resources/Screenshot.png);">
+                </div>
+            </div>
+        </div>
+        <div class="pl4 pl4">
+            <h4 class="f3 dib f3-s near-black mt0 mb2 mr2">
+                Sounds
+            </h4>
+        </div>
+
+        <iframe
+                width="100%"
+                height="300"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293922345&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+    </article>
+
+    <footer class="bg-near-white w-100 no-repeat">
+        <div class="cf">
+            <div class="pa4">
+                <h4 class="f3 dib f3-s near-black mt0 mb2 mr2">
+                    BlackFace is Open Source
+                </h4>
+                <div class="fr">
+                    <a class="github-button"
+                       href="https://github.com/khrykin/BlackFace/fork/"
+                       data-size="large"
+                       aria-label="Fork khrykin/StrategrDesktop on GitHub">Fork</a>
+                    <a class="github-button"
+                       href="https://github.com/khrykin/BlackFace/"
+                       data-icon="octicon-star"
+                       data-size="large"
+                       aria-label="Star khrykin/StrategrDesktop on GitHub">Star</a>
+                </div>
+                <p class="lh-headline f4 fw5 o-60 i dark-gray ma0">
+                    Join the development on GitHub!
+                </p>
+
+                <footer class="pt4 fw3 gray">
+                    &copy;2019 – {{ 'now' | date: "%Y" }}
+                    GPLv3 Licensed by
+                    <a target="_blank"
+                       rel="noopener noreferrer"
+                       class="link fw6 dark-gray underline-hover"
+                       href="https://github.com/khrykin/">@khrykin</a>
+                </footer>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
