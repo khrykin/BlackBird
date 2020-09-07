@@ -68,3 +68,4 @@ if (scrollDown) {
 }
 
 handleOS();
+loadGithubButtonsScript();
