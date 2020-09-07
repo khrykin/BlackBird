@@ -9,7 +9,9 @@
 */
 
 #include "PluginProcessor.h"
-#include "PluginEditor.h"
+#include "UI/PluginEditor.h"
+
+#pragma mark - Construction & Destruction
 
 BlackFaceAudioProcessor::BlackFaceAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -29,74 +31,8 @@ BlackFaceAudioProcessor::BlackFaceAudioProcessor()
 BlackFaceAudioProcessor::~BlackFaceAudioProcessor() {
 }
 
-//==============================================================================
-const String BlackFaceAudioProcessor::getName() const {
-    return JucePlugin_Name;
-}
+#pragma mark - Lifecycle
 
-bool BlackFaceAudioProcessor::acceptsMidi() const {
-#if JucePlugin_WantsMidiInput
-    return true;
-#else
-    return false;
-#endif
-}
-
-bool BlackFaceAudioProcessor::producesMidi() const {
-#if JucePlugin_ProducesMidiOutput
-    return true;
-#else
-    return false;
-#endif
-}
-
-bool BlackFaceAudioProcessor::isMidiEffect() const {
-#if JucePlugin_IsMidiEffect
-    return true;
-#else
-    return false;
-#endif
-}
-
-double BlackFaceAudioProcessor::getTailLengthSeconds() const {
-    return 0.0;
-}
-
-int BlackFaceAudioProcessor::getNumPrograms() {
-    auto numberOfPresets = getPresetsNames().size();
-    return numberOfPresets != 0 ? numberOfPresets
-                                : 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
-    // so this should be at least 1, even if you're not really implementing programs.
-}
-
-int BlackFaceAudioProcessor::getCurrentProgram() {
-    return currentProgram;
-}
-
-void BlackFaceAudioProcessor::silentlySetCurrentProgram(int index) {
-    currentProgram = index;
-
-    auto presetName = getPresetsNames()[index];
-
-    loadPreset(presetName);
-}
-
-void BlackFaceAudioProcessor::setCurrentProgram(int index) {
-    silentlySetCurrentProgram(index);
-
-    if (onProgramChange) {
-        onProgramChange(index);
-    }
-}
-
-const String BlackFaceAudioProcessor::getProgramName(int index) {
-    return getPresetsNames()[index];
-}
-
-void BlackFaceAudioProcessor::changeProgramName(int index, const String &newName) {
-}
-
-//==============================================================================
 void BlackFaceAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
     _synth.prepare({sampleRate,
                     (uint32_t) samplesPerBlock,
@@ -107,6 +43,8 @@ void BlackFaceAudioProcessor::releaseResources() {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
+
+#pragma mark - Capatibilites
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 
@@ -133,6 +71,36 @@ bool BlackFaceAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts)
 
 #endif
 
+bool BlackFaceAudioProcessor::hasEditor() const {
+    return true; // (change this to false if you choose to not supply an editor)
+}
+
+bool BlackFaceAudioProcessor::acceptsMidi() const {
+#if JucePlugin_WantsMidiInput
+    return true;
+#else
+    return false;
+#endif
+}
+
+bool BlackFaceAudioProcessor::producesMidi() const {
+#if JucePlugin_ProducesMidiOutput
+    return true;
+#else
+    return false;
+#endif
+}
+
+bool BlackFaceAudioProcessor::isMidiEffect() const {
+#if JucePlugin_IsMidiEffect
+    return true;
+#else
+    return false;
+#endif
+}
+
+#pragma mark - Processing Input
+
 void BlackFaceAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
     ScopedNoDenormals noDenormals;
     auto totalNumInputChannels = getTotalNumInputChannels();
@@ -147,31 +115,55 @@ void BlackFaceAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear(i, 0, buffer.getNumSamples());
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-//    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
-//        auto *channelData = buffer.getWritePointer(channel);
-//
-//        // ..do something to the data...
-//    }
-
     _synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
-//==============================================================================
-bool BlackFaceAudioProcessor::hasEditor() const {
-    return true; // (change this to false if you choose to not supply an editor)
+#pragma mark - Getting Basic Properties
+
+const String BlackFaceAudioProcessor::getName() const {
+    return JucePlugin_Name;
 }
 
-AudioProcessorEditor *BlackFaceAudioProcessor::createEditor() {
-    return new BlackFaceAudioProcessorEditor(*this, valueTreeState);
+const String BlackFaceAudioProcessor::getProgramName(int index) {
+    return getPresetsNames()[index];
 }
 
-//==============================================================================
+double BlackFaceAudioProcessor::getTailLengthSeconds() const {
+    return 0.0;
+}
+
+int BlackFaceAudioProcessor::getNumPrograms() {
+    auto numberOfPresets = getPresetsNames().size();
+    return numberOfPresets != 0 ? numberOfPresets : 1;
+    // NB: some hosts don't cope very well if you tell them there are 0 programs,
+    // so this should be at least 1, even if you're not really implementing programs.
+}
+
+int BlackFaceAudioProcessor::getCurrentProgram() {
+    return currentProgram;
+}
+
+void BlackFaceAudioProcessor::setCurrentProgram(int index) {
+    silentlySetCurrentProgram(index);
+
+    if (onProgramChange) {
+        onProgramChange(index);
+    }
+}
+
+void BlackFaceAudioProcessor::silentlySetCurrentProgram(int index) {
+    currentProgram = index;
+
+    auto presetName = getPresetsNames()[index];
+
+    loadPreset(presetName);
+}
+
+void BlackFaceAudioProcessor::changeProgramName(int index, const String &newName) {
+}
+
+#pragma mark - Accessing State Information
+
 void BlackFaceAudioProcessor::getStateInformation(MemoryBlock &destData) {
     auto state = valueTreeState.copyState();
     std::unique_ptr<XmlElement> xml(state.createXml());
@@ -186,9 +178,7 @@ void BlackFaceAudioProcessor::setStateInformation(const void *data, int sizeInBy
             valueTreeState.replaceState(ValueTree::fromXml(*xmlState));
 }
 
-Synth &BlackFaceAudioProcessor::synth() {
-    return _synth;
-}
+#pragma mark - Handling Presets
 
 File BlackFaceAudioProcessor::getPresetsDirectory() {
     auto userDataFolder = File::getSpecialLocation(
@@ -237,7 +227,20 @@ void BlackFaceAudioProcessor::loadPreset(const String &presetName) {
 
 }
 
-//==============================================================================
+#pragma mark - Creating Editor Instance
+
+AudioProcessorEditor *BlackFaceAudioProcessor::createEditor() {
+    return new BlackFaceAudioProcessorEditor(*this, valueTreeState);
+}
+
+#pragma mark - Accessing Synth Instance
+
+Synth &BlackFaceAudioProcessor::synth() {
+    return _synth;
+}
+
+#pragma mark - Creating Plugin Filter
+
 // This creates new instances of the plugin..
 AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
     return new BlackFaceAudioProcessor();

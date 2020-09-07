@@ -1,13 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="xAVWjX" name="BlackFace" projectType="audioplug" jucerVersion="5.4.5"
-              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+<JUCERPROJECT id="xAVWjX" name="BlackFace" projectType="audioplug" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               pluginManufacturer="Dmitry Khrykin" pluginManufacturerCode="DKhr"
               pluginCode="DKhr" aaxIdentifier="com.khrykin.blackface" cppLanguageStandard="17"
-              displaySplashScreen="0" reportAppUsage="0" companyEmail="khrykin@me.com"
+              displaySplashScreen="1" reportAppUsage="0" companyEmail="khrykin@me.com"
               companyName="Dmitry Khrykin" companyCopyright="(c) 2020 Dmitry Khrykin"
-              pluginFormats="buildAU,buildStandalone,buildVST3" version="0.0.1">
+              pluginFormats="buildAU,buildStandalone,buildVST3" version="0.0.1"
+              jucerFormatVersion="1">
   <MAINGROUP id="HpwLOg" name="BlackFace">
+    <GROUP id="{B57BD810-FB58-9628-6CF0-B76C36460461}" name="Source">
+      <GROUP id="{E26D3D91-A84D-5F20-AD6B-079DCE1EC8C4}" name="DSP">
+        <FILE id="RkbGAM" name="DSPParameters.cpp" compile="1" resource="0"
+              file="Source/DSP/DSPParameters.cpp"/>
+        <FILE id="Lhvqw8" name="DSPParameters.h" compile="0" resource="0" file="Source/DSP/DSPParameters.h"/>
+        <FILE id="odX5LG" name="LookupTablesBank.h" compile="0" resource="0"
+              file="Source/DSP/LookupTablesBank.h"/>
+        <FILE id="u6cLST" name="MultibandLookupTable.h" compile="0" resource="0"
+              file="Source/DSP/MultibandLookupTable.h"/>
+        <FILE id="KgRDNL" name="SineSeries.h" compile="0" resource="0" file="Source/DSP/SineSeries.h"/>
+        <FILE id="dPURKW" name="Synth.h" compile="0" resource="0" file="Source/DSP/Synth.h"/>
+        <FILE id="Uhhqzx" name="VCAOscillator.h" compile="0" resource="0" file="Source/DSP/VCAOscillator.h"/>
+        <FILE id="jDFN7H" name="Voice.h" compile="0" resource="0" file="Source/DSP/Voice.h"/>
+      </GROUP>
+      <GROUP id="{C190671E-D214-14FC-F555-4D69A1FBFE04}" name="UI">
+        <FILE id="iJyjFy" name="EditorHeader.cpp" compile="1" resource="0"
+              file="Source/UI/EditorHeader.cpp"/>
+        <FILE id="GwdcQF" name="EditorHeader.h" compile="0" resource="0" file="Source/UI/EditorHeader.h"/>
+        <FILE id="Jnyhog" name="Knob.cpp" compile="1" resource="0" file="Source/UI/Knob.cpp"/>
+        <FILE id="Ebqnfn" name="Knob.h" compile="0" resource="0" file="Source/UI/Knob.h"/>
+        <FILE id="HSG3ln" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/UI/LookAndFeel.cpp"/>
+        <FILE id="hM6uUc" name="LookAndFeel.h" compile="0" resource="0" file="Source/UI/LookAndFeel.h"/>
+        <FILE id="XZSWG5" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/UI/PluginEditor.cpp"/>
+        <FILE id="tw6ukB" name="PluginEditor.h" compile="0" resource="0" file="Source/UI/PluginEditor.h"/>
+        <FILE id="uEyvpv" name="Section.cpp" compile="1" resource="0" file="Source/UI/Section.cpp"/>
+        <FILE id="pNwUBL" name="Section.h" compile="0" resource="0" file="Source/UI/Section.h"/>
+      </GROUP>
+      <FILE id="t6bMTg" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="lOvIUp" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+    </GROUP>
     <GROUP id="{22273CFE-9B6E-A74F-4992-6CE557B18BB3}" name="Resources">
       <FILE id="Sp1r7B" name="Jost-600-Semi.ttf" compile="0" resource="1"
             file="Resources/Jost-600-Semi.ttf"/>
@@ -18,30 +51,6 @@
       <FILE id="VH6Cd8" name="squarewave.svg" compile="0" resource="1" file="Resources/squarewave.svg"/>
     </GROUP>
     <GROUP id="{2E78FA86-0204-0F3C-5FB0-BA120234FF18}" name="Presets"/>
-    <GROUP id="{155893E7-69A4-BB50-DBBF-0A0DFF2E18BE}" name="Source">
-      <FILE id="XIriMc" name="EditorHeader.cpp" compile="1" resource="0"
-            file="Source/EditorHeader.cpp"/>
-      <FILE id="X09tfq" name="EditorHeader.h" compile="0" resource="0" file="Source/EditorHeader.h"/>
-      <FILE id="NHdQEk" name="DSPParameters.cpp" compile="1" resource="0"
-            file="Source/DSPParameters.cpp"/>
-      <FILE id="gmS7hU" name="DSPParameters.h" compile="0" resource="0" file="Source/DSPParameters.h"/>
-      <FILE id="BXn8M3" name="Knob.cpp" compile="1" resource="0" file="Source/Knob.cpp"/>
-      <FILE id="F4KTnd" name="Knob.h" compile="0" resource="0" file="Source/Knob.h"/>
-      <FILE id="zk8MUE" name="LookAndFeel.cpp" compile="1" resource="0" file="Source/LookAndFeel.cpp"/>
-      <FILE id="NyDyGs" name="LookAndFeel.h" compile="0" resource="0" file="Source/LookAndFeel.h"/>
-      <FILE id="EC0dqY" name="Section.cpp" compile="1" resource="0" file="Source/Section.cpp"/>
-      <FILE id="NUBoTW" name="Section.h" compile="0" resource="0" file="Source/Section.h"/>
-      <FILE id="uOxoeG" name="Synth.cpp" compile="1" resource="0" file="Source/Synth.cpp"/>
-      <FILE id="NB7HdN" name="Synth.h" compile="0" resource="0" file="Source/Synth.h"/>
-      <FILE id="YT3aoG" name="Voice.h" compile="0" resource="0" file="Source/Voice.h"/>
-      <FILE id="BszaW5" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="aQknJI" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
-      <FILE id="xqH18P" name="PluginEditor.cpp" compile="1" resource="0"
-            file="Source/PluginEditor.cpp"/>
-      <FILE id="zg7yiJ" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-    </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
@@ -50,7 +59,6 @@
         <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="0"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_plugin_client" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_processors" path="JUCE/modules"/>
@@ -65,6 +73,7 @@
         <MODULEPATH id="juce_opengl" path="JUCE/modules"/>
         <MODULEPATH id="juce_dsp" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <CLION targetFolder="Builds/CLion" clionXcodeEnabled="1">
@@ -81,9 +90,9 @@
         <MODULEPATH id="juce_audio_processors"/>
         <MODULEPATH id="juce_audio_plugin_client"/>
         <MODULEPATH id="juce_audio_devices"/>
-        <MODULEPATH id="juce_audio_basics"/>
         <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </CLION>
     <VS2019 targetFolder="Builds/VisualStudio2019">
@@ -107,27 +116,27 @@
         <MODULEPATH id="juce_audio_plugin_client" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="JUCE/modules"/>
         <MODULEPATH id="juce_audio_devices" path="JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
       </MODULEPATHS>
     </VS2019>
   </EXPORTFORMATS>
   <MODULES>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
-            useGlobalPath="0"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
     <OSX/>

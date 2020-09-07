@@ -2588,40 +2588,40 @@ const char* Jost700Bold_ttf = (const char*) temp_binary_data_1;
 
 //================== sawwave.svg ==================
 static const unsigned char temp_binary_data_2[] =
-"<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n"
-"<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n"
-"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\r\n"
-"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\r\n"
-"\t width=\"15px\" height=\"5px\" viewBox=\"7.5 2.5 15 5\" enable-background=\"new 7.5 2.5 15 5\" xml:space=\"preserve\">\r\n"
-"<polyline fill=\"none\" stroke=\"#FFFFFF\" stroke-miterlimit=\"10\" points=\"18.705,7.094 18.705,3.198 8.201,7.094 \"/>\r\n"
-"</svg>\r\n";
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+"<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\n"
+"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
+"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n"
+"\t width=\"15px\" height=\"5px\" viewBox=\"7.5 2.5 15 5\" enable-background=\"new 7.5 2.5 15 5\" xml:space=\"preserve\">\n"
+"<polyline fill=\"none\" stroke=\"#FFFFFF\" stroke-miterlimit=\"10\" points=\"18.705,7.094 18.705,3.198 8.201,7.094 \"/>\n"
+"</svg>\n";
 
 const char* sawwave_svg = (const char*) temp_binary_data_2;
 
 //================== sinewave.svg ==================
 static const unsigned char temp_binary_data_3[] =
-"<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n"
-"<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n"
-"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\r\n"
-"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\r\n"
-"\t width=\"15px\" height=\"5px\" viewBox=\"7.5 2.5 15 5\" enable-background=\"new 7.5 2.5 15 5\" xml:space=\"preserve\">\r\n"
-"<g>\r\n"
-"\t<path fill=\"none\" stroke=\"#FFFFFF\" stroke-miterlimit=\"10\" d=\"M8.548,6.96c2.152,0,2.152-3.919,4.303-3.919\r\n"
-"\t\tc2.152,0,2.152,3.919,4.303,3.919s2.151-3.919,4.301-3.919\"/>\r\n"
-"</g>\r\n"
-"</svg>\r\n";
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+"<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\n"
+"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
+"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n"
+"\t width=\"15px\" height=\"5px\" viewBox=\"7.5 2.5 15 5\" enable-background=\"new 7.5 2.5 15 5\" xml:space=\"preserve\">\n"
+"<g>\n"
+"\t<path fill=\"none\" stroke=\"#FFFFFF\" stroke-miterlimit=\"10\" d=\"M8.548,6.96c2.152,0,2.152-3.919,4.303-3.919\n"
+"\t\tc2.152,0,2.152,3.919,4.303,3.919s2.151-3.919,4.301-3.919\"/>\n"
+"</g>\n"
+"</svg>\n";
 
 const char* sinewave_svg = (const char*) temp_binary_data_3;
 
 //================== squarewave.svg ==================
 static const unsigned char temp_binary_data_4[] =
-"<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n"
-"<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n"
-"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\r\n"
-"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\r\n"
-"\t width=\"15px\" height=\"5px\" viewBox=\"7.5 2.5 15 5\" enable-background=\"new 7.5 2.5 15 5\" xml:space=\"preserve\">\r\n"
-"<polyline fill=\"none\" stroke=\"#FFFFFF\" stroke-miterlimit=\"10\" points=\"21.84,3.04 15,3.04 15,6.944 8.161,6.944 \"/>\r\n"
-"</svg>\r\n";
+"<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+"<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\n"
+"<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n"
+"<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n"
+"\t width=\"15px\" height=\"5px\" viewBox=\"7.5 2.5 15 5\" enable-background=\"new 7.5 2.5 15 5\" xml:space=\"preserve\">\n"
+"<polyline fill=\"none\" stroke=\"#FFFFFF\" stroke-miterlimit=\"10\" points=\"21.84,3.04 15,3.04 15,6.944 8.161,6.944 \"/>\n"
+"</svg>\n";
 
 const char* squarewave_svg = (const char*) temp_binary_data_4;
 
@@ -2638,9 +2638,9 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
     {
         case 0xd9957625:  numBytes = 111068; return Jost600Semi_ttf;
         case 0x9789307d:  numBytes = 123996; return Jost700Bold_ttf;
-        case 0x82601f07:  numBytes = 595; return sawwave_svg;
-        case 0x21295dab:  numBytes = 663; return sinewave_svg;
-        case 0x1904483b:  numBytes = 597; return squarewave_svg;
+        case 0x82601f07:  numBytes = 588; return sawwave_svg;
+        case 0x21295dab:  numBytes = 653; return sinewave_svg;
+        case 0x1904483b:  numBytes = 590; return squarewave_svg;
         default: break;
     }
 

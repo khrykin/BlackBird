@@ -15,13 +15,13 @@ namespace BinaryData
     const int            Jost700Bold_ttfSize = 123996;
 
     extern const char*   sawwave_svg;
-    const int            sawwave_svgSize = 595;
+    const int            sawwave_svgSize = 588;
 
     extern const char*   sinewave_svg;
-    const int            sinewave_svgSize = 663;
+    const int            sinewave_svgSize = 653;
 
     extern const char*   squarewave_svg;
-    const int            squarewave_svgSize = 597;
+    const int            squarewave_svgSize = 590;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 5;

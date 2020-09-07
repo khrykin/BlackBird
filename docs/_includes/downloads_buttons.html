@@ -7,8 +7,8 @@
 
         {% for asset in release.assets  %}
 
-            {% assign os_tag = "" %}
-            {% assign os_name = "" %}
+            {% assign os_tag = nil %}
+            {% assign os_name = nil %}
 
             {% if asset.name contains "pkg" %}
                 {% assign os_tag = "macOS" %}
@@ -25,11 +25,13 @@
                 {% assign os_name = "Windows (x64)" %}
             {% endif %}
 
-            <span id="{{os_tag}}">
-                <a class="github-button" href="{{ asset.browser_download_url }}" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-cloud-download" data-size="large" aria-label="Download BlackFace for {{os_name}}">{{os_name}}
-                    <span id="tagName">v{{version}}</span>
-                </a>
-            </span>
+            {% if os_tag %}
+                <span id="{{os_tag}}">
+                    <a class="github-button" href="{{ asset.browser_download_url }}" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-cloud-download" data-size="large" aria-label="Download BlackFace for {{os_name}}">{{os_name}}
+                        <span id="tagName">v{{version}}</span>
+                    </a>
+                </span>
+            {% endif %}
 
         {% endfor %}
     </div>

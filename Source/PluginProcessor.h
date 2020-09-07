@@ -11,48 +11,72 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Synth.h"
+#include "DSP/Synth.h"
 
 class BlackFaceAudioProcessor : public AudioProcessor {
 public:
+
+#pragma mark - Listening to Changes
+
     std::function<void(int)> onProgramChange = nullptr;
+
+#pragma mark - Construction & Destruction
 
     BlackFaceAudioProcessor();
     ~BlackFaceAudioProcessor() override;
 
+#pragma mark - Lifecycle
+
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
+
+#pragma mark - Capatibilites
 
 #ifndef JucePlugin_PreferredChannelConfigurations
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 #endif
 
-    void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
-
-    AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
-
-    const String getName() const override;
-
     bool acceptsMidi() const override;
     bool producesMidi() const override;
     bool isMidiEffect() const override;
+
+#pragma mark - Processing Input
+
+    void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
+
+#pragma mark - Getting Basic Properties
+
+    const String getName() const override;
+    const String getProgramName(int index) override;
     double getTailLengthSeconds() const override;
+
+#pragma mark - Handling Programs
 
     int getNumPrograms() override;
     int getCurrentProgram() override;
+
     void setCurrentProgram(int index) override;
     void silentlySetCurrentProgram(int index);
 
-    const String getProgramName(int index) override;
     void changeProgramName(int index, const String &newName) override;
+
+#pragma mark - Accessing State Information
 
     void getStateInformation(MemoryBlock &destData) override;
     void setStateInformation(const void *data, int sizeInBytes) override;
 
+#pragma mark - Handling Presets
+
     File getPresetsDirectory();
     StringArray getPresetsNames();
     void loadPreset(const String &presetName);
+
+#pragma mark - Creating Editor Instance
+
+    AudioProcessorEditor *createEditor() override;
+
+#pragma mark - Accessing Synth Instance
 
     Synth &synth();
 
