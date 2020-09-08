@@ -133,6 +133,10 @@ public:
         firstOscillator().setLevel(currentVelocity);
         firstOscillator().setLevel(currentVelocity);
 
+        MessageManager::callAsync([=] {
+            std::cout << "frequency: " << currentNoteFrequency << "\n";
+        });
+
         if (modulationAmount > 0.0f) {
             updateModulation();
         }

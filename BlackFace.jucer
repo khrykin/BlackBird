@@ -19,6 +19,7 @@
               file="Source/DSP/MultibandLookupTable.h"/>
         <FILE id="KgRDNL" name="SineSeries.h" compile="0" resource="0" file="Source/DSP/SineSeries.h"/>
         <FILE id="dPURKW" name="Synth.h" compile="0" resource="0" file="Source/DSP/Synth.h"/>
+        <FILE id="kuLStT" name="Utility.h" compile="0" resource="0" file="Source/DSP/Utility.h"/>
         <FILE id="Uhhqzx" name="VCAOscillator.h" compile="0" resource="0" file="Source/DSP/VCAOscillator.h"/>
         <FILE id="jDFN7H" name="Voice.h" compile="0" resource="0" file="Source/DSP/Voice.h"/>
       </GROUP>
