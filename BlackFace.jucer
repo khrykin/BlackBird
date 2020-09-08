@@ -5,7 +5,7 @@
               pluginCode="DKhr" aaxIdentifier="com.khrykin.blackface" cppLanguageStandard="17"
               displaySplashScreen="1" reportAppUsage="0" companyEmail="khrykin@me.com"
               companyName="Dmitry Khrykin" companyCopyright="(c) 2020 Dmitry Khrykin"
-              pluginFormats="buildAU,buildStandalone,buildVST3" version="0.0.1"
+              pluginFormats="buildAU,buildStandalone,buildVST3" version="0.1.0"
               jucerFormatVersion="1">
   <MAINGROUP id="HpwLOg" name="BlackFace">
     <GROUP id="{B57BD810-FB58-9628-6CF0-B76C36460461}" name="Source">
