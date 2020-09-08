@@ -1,6 +1,6 @@
 [Setup]
 AppName=BlackFace
-AppVersion=0.0.1
+AppVersion=0.1.0
 DefaultDirName={cf}
 DefaultGroupName=BlackFace
 OutputBaseFilename=BlackFace-windows-x64
