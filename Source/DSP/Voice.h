@@ -41,7 +41,7 @@ public:
     static constexpr auto gainHeadroom = 0.9f;
 
     static constexpr auto minCutoff = 50.0f;
-    static constexpr auto maxCutoff = 20000.0f;
+    static constexpr auto maxCutoff = 22000.0f;
 
     static constexpr auto minEnvelopeDurationSeconds = 0.01f;
     static constexpr auto maxEnvelopeDurationSeconds = 15.0f;
@@ -133,10 +133,6 @@ public:
         firstOscillator().setLevel(currentVelocity);
         firstOscillator().setLevel(currentVelocity);
 
-        MessageManager::callAsync([=] {
-            std::cout << "frequency: " << currentNoteFrequency << "\n";
-        });
-
         if (modulationAmount > 0.0f) {
             updateModulation();
         }
@@ -188,30 +184,14 @@ public:
                 subBlockPosition += subBlockSize;
             }
 
-            if (!adsr.isActive()) {
+            if (!adsr.isActive() && !isTimerRunning()) {
                 noteDidFade();
             }
         }
 
         dsp::AudioBlock<float>(outputBuffer)
-                .getSubBlock(startSampleIndex, numSamples)
-                .add(tempBlock);
-    }
-
-    inline void renderLFOSubBlock(dsp::AudioBlock<float> &subBlock) {
-        dsp::ProcessContextReplacing<float> context(subBlock);
-
-        updateCurrentDSPState();
-        updateADSRParameters();
-
-        auto nextADSRSample = adsr.getNextSample();
-
-        updateLevelWithADSRSample(nextADSRSample);
-        updateFilterWithADSRSample(nextADSRSample);
-
-        updateModulation();
-
-        processorChain.process(context);
+            .getSubBlock(startSampleIndex, numSamples)
+            .add(tempBlock);
     }
 
 private:
@@ -244,10 +224,10 @@ private:
     };
 
     dsp::ProcessorChain<
-            VCAOscillator<float>,
-            VCAOscillator<float>,
-            dsp::LadderFilter<float>,
-            dsp::Gain<float>
+        VCAOscillator<float>,
+        VCAOscillator<float>,
+        dsp::LadderFilter<float>,
+        dsp::Gain<float>
     > processorChain;
 
     dsp::Oscillator<float> lfo;
@@ -275,12 +255,28 @@ private:
 
 #pragma mark - Helper Functions
 
-    static inline float analogFactor() {
+    void renderLFOSubBlock(dsp::AudioBlock<float> &subBlock) {
+        dsp::ProcessContextReplacing<float> context(subBlock);
+
+        updateCurrentDSPState();
+        updateADSRParameters();
+
+        auto nextADSRSample = adsr.getNextSample();
+
+        updateLevelWithADSRSample(nextADSRSample);
+        updateFilterWithADSRSample(nextADSRSample);
+
+        updateModulation();
+
+        processorChain.process(context);
+    }
+
+    static float analogFactor() {
         return (Random::getSystemRandom().nextBool() ? 1.0f : -1.0f)
                * maxAnalogFactor * Random::getSystemRandom().nextFloat();
     }
 
-    static inline double getBendedFrequencyForWheel(int newPitchWheelValue, int currentlyPlayingNote) {
+    static double getBendedFrequencyForWheel(int newPitchWheelValue, int currentlyPlayingNote) {
         auto bendSemitonesValue = pitchWheelSemitonesRange * getBendValueForWheel(newPitchWheelValue);
         auto noteFrequency = MidiMessage::getMidiNoteInHertz(currentlyPlayingNote);
 
@@ -290,8 +286,8 @@ private:
         return noteFrequency * std::pow(2.0f, 1.0f * bendSemitonesValue / 12);
     }
 
-/** Returns bend value in a range of -1.0 to 1.0 */
-    static inline double getBendValueForWheel(int newPitchWheelValue) {
+    /** Returns bend value in a range of -1.0 to 1.0 */
+    static double getBendValueForWheel(int newPitchWheelValue) {
         if (newPitchWheelValue >= 0x3fff)
             newPitchWheelValue = 0x3fff + 0x1;
 
@@ -300,7 +296,7 @@ private:
 
 #pragma mark - Updating DSP-Related State
 
-    inline void updateCurrentDSPState() {
+    void updateCurrentDSPState() {
         if (currentWaveform != Waveform(static_cast<int>(*parameters.oscillatorWaveform))) {
             updateOscillatorsWaveform();
         }
@@ -314,21 +310,21 @@ private:
         }
     }
 
-    inline void updateOscillatorsWaveform() {
+    void updateOscillatorsWaveform() {
         currentWaveform = static_cast<Waveform>(static_cast<int>(*parameters.oscillatorWaveform));
 
         firstOscillator().setWaveform(currentWaveform);
         secondOscillator().setWaveform(currentWaveform);
     }
 
-    inline void updateADSRParameters() {
+    void updateADSRParameters() {
         adsr.setParameters({*parameters.attack,
                             *parameters.decay,
                             *parameters.sustain,
                             *parameters.release});
     }
 
-    inline void updateOscillatorsFrequency() {
+    void updateOscillatorsFrequency() {
         currentOsc1Frequency = currentNoteFrequency * (1.0f + analogFactor());
         currentOsc2AnalogFactor = analogFactor();
         currentOsc2Frequency = currentNoteFrequency *
@@ -340,20 +336,20 @@ private:
         secondOscillator().setFrequency(currentOsc2Frequency);
     }
 
-    inline void updateFilterDrive() {
+    void updateFilterDrive() {
         currentFilterDrive = *parameters.filterDrive;
 
         filter().setDrive(currentFilterDrive);
     }
 
-    inline void updateModulation() {
+    void updateModulation() {
         secondOscillator().setFrequency(currentOsc2Frequency
                                         * (1.0 + modulationAmount
                                                  * lfo.processSample(0.0f)
                                                  * (maxDetuningFactor - defaultDetuningFactor) * maxAnalogFactor));
     }
 
-    inline void updateFilterWithADSRSample(float nextADSRSample) {
+    void updateFilterWithADSRSample(float nextADSRSample) {
         const auto envelopeCutoffValue = *parameters.cutoffEnvelopeAmount >= 0
                                          ? (1.0 - *parameters.cutoffEnvelopeAmount) +
                                            *parameters.cutoffEnvelopeAmount * nextADSRSample
@@ -369,7 +365,7 @@ private:
         filter().setResonance(envelopeResonanceValue * *parameters.resonance);
     }
 
-    inline void updateLevelWithADSRSample(float nextADSRSample) {
+    void updateLevelWithADSRSample(float nextADSRSample) {
         auto envelopeVelocityValue = (1.0 - (*parameters.velocityEnvelopeAmount)
                                             * (1.0 - currentVelocity)) * nextADSRSample;
 
@@ -391,7 +387,7 @@ private:
 
 #pragma mark - Bypassing processing
 
-    inline void setProcessorsBypassed(bool bypassed) {
+    void setProcessorsBypassed(bool bypassed) {
         processorChain.template setBypassed<osc1Index>(bypassed);
         processorChain.template setBypassed<osc2Index>(bypassed);
 

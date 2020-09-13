@@ -43,13 +43,11 @@ public:
         sampleRate = spec.sampleRate;
     }
 
-#pragma mark - Setting & Getting Waveform
+#pragma mark - Setting Properties
 
     void setWaveform(Waveform waveform) {
         currentWaveform = waveform;
     }
-
-#pragma mark - Setting Properties
 
     void setFrequency(ValueType newValue) {
         const auto nyquistFrequency = 0.5 * sampleRate;
@@ -91,8 +89,8 @@ private:
     double sampleRate = 0;
 
     dsp::ProcessorChain<
-            Oscillator,
-            dsp::Gain<ValueType>
+        Oscillator,
+        dsp::Gain<ValueType>
     > processorChain;
 
 #pragma mark - Accessing Processors

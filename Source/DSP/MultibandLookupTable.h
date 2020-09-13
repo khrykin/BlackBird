@@ -43,8 +43,6 @@ public:
                                                                                        -pi, pi,
                                                                                        tableSize);
         });
-
-
     }
 
 #pragma mark - Call Operator
@@ -63,18 +61,18 @@ private:
 #pragma mark - Bands Frequencies
 
     static constexpr std::array bandMaxFrequencies
-            = std::to_array<FloatType>({
-                                               60,     // Sub
-                                               250,    // Bass
-                                               500,    // LowMid
-                                               1000,   //
-                                               2000,   // Mid
-                                               3000,   //
-                                               4000,   // UpperMid
-                                               5000,   //
-                                               6000,   // Presence
-                                               20000   // Brilliance
-                                       });
+        = std::to_array<FloatType>({
+                                       60,     // Sub
+                                       250,    // Bass
+                                       500,    // LowMid
+                                       1000,   //
+                                       2000,   // Mid
+                                       3000,   //
+                                       4000,   // UpperMid
+                                       5000,   //
+                                       6000,   // Presence
+                                       20000   // Brilliance
+                                   });
 
     static constexpr auto numberOfBands = bandMaxFrequencies.size();
 

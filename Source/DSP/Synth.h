@@ -98,8 +98,8 @@ private:
     LookupTablesBank<float> lookupTablesBank;
 
     dsp::ProcessorChain<
-            dsp::Reverb,
-            dsp::Gain<float>
+        dsp::Reverb,
+        dsp::Gain<float>
     > fxChain;
 
 #pragma mark - Rendering Audio Output
@@ -118,8 +118,7 @@ private:
         lastMasterGain = *parameters.masterGain;
     }
 
-    inline void applyMasterFxChain(AudioBuffer<float> &outputBuffer, int startSampleIndex, int numSamples) {
-        // Apply master fx chain
+    void applyMasterFxChain(AudioBuffer<float> &outputBuffer, int startSampleIndex, int numSamples) {
         auto fxBlock = tempBlock.getSubBlock(0, (size_t) numSamples);
         fxBlock.copyFrom(outputBuffer, startSampleIndex, 0, numSamples);
 
@@ -138,7 +137,7 @@ private:
         lastReverbGain = *parameters.reverb;
 
         juce::dsp::AudioBlock<float>(outputBuffer)
-                .getSubBlock((size_t) startSampleIndex, (size_t) numSamples)
-                .add(tempBlock);
+            .getSubBlock((size_t) startSampleIndex, (size_t) numSamples)
+            .add(tempBlock);
     }
 };
