@@ -13,10 +13,10 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "LookAndFeel.h"
 
-class BlackFaceAudioProcessorEditor;
+class BlackBirdAudioProcessorEditor;
 class EditorHeader : public Component {
 public:
-    explicit EditorHeader(BlackFaceAudioProcessorEditor &editor);
+    explicit EditorHeader(BlackBirdAudioProcessorEditor &editor);
     ~EditorHeader() override;
 
     void resized() override;
@@ -26,7 +26,7 @@ public:
 private:
     static constexpr auto presetsListWidth = 200.0f;
 
-    BlackFaceAudioProcessorEditor &editor;
+    BlackBirdAudioProcessorEditor &editor;
 
     ComboBox presetsList;
 

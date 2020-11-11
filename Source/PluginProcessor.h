@@ -13,7 +13,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "DSP/Synth.h"
 
-class BlackFaceAudioProcessor : public AudioProcessor {
+class BlackBirdAudioProcessor : public AudioProcessor {
 public:
 
 #pragma mark - Listening to Changes
@@ -22,8 +22,8 @@ public:
 
 #pragma mark - Construction & Destruction
 
-    BlackFaceAudioProcessor();
-    ~BlackFaceAudioProcessor() override;
+    BlackBirdAudioProcessor();
+    ~BlackBirdAudioProcessor() override;
 
 #pragma mark - Lifecycle
 
@@ -83,7 +83,7 @@ public:
 private:
     AudioProcessorValueTreeState valueTreeState{*this,
                                                 nullptr,
-                                                Identifier("BlackFace"),
+                                                Identifier("BlackBird"),
                                                 DSPParameters::makeLayout()};
 
     DSPParameters parameters{valueTreeState};
@@ -91,5 +91,5 @@ private:
 
     int currentProgram = 0;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BlackFaceAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BlackBirdAudioProcessor)
 };

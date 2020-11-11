@@ -17,12 +17,12 @@
 #include "Section.h"
 #include "EditorHeader.h"
 
-class BlackFaceAudioProcessorEditor : public AudioProcessorEditor {
+class BlackBirdAudioProcessorEditor : public AudioProcessorEditor {
 public:
-    explicit BlackFaceAudioProcessorEditor(BlackFaceAudioProcessor &,
+    explicit BlackBirdAudioProcessorEditor(BlackBirdAudioProcessor &,
                                            AudioProcessorValueTreeState &);
 
-    ~BlackFaceAudioProcessorEditor() override;
+    ~BlackBirdAudioProcessorEditor() override;
 
     void paint(Graphics &) override;
     void resized() override;
@@ -35,7 +35,7 @@ private:
     static constexpr auto padding = 14.0f;
     static constexpr auto headerHeight = 38.0f;
 
-    BlackFaceAudioProcessor &processor;
+    BlackBirdAudioProcessor &processor;
     AudioProcessorValueTreeState &valueTreeState;
 
     Section oscillatorSection{"Oscillator"};
@@ -52,5 +52,5 @@ private:
 
     void setupControls();
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BlackFaceAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BlackBirdAudioProcessorEditor)
 };
