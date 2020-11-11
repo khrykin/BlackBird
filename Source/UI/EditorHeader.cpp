@@ -12,7 +12,7 @@
 #include "EditorHeader.h"
 #include "PluginEditor.h"
 
-EditorHeader::EditorHeader(BlackFaceAudioProcessorEditor &editor) : editor(editor) {
+EditorHeader::EditorHeader(BlackBirdAudioProcessorEditor &editor) : editor(editor) {
     addAndMakeVisible(presetsList);
     setLookAndFeel(&lookAndFeel);
 
@@ -56,7 +56,7 @@ EditorHeader::EditorHeader(BlackFaceAudioProcessorEditor &editor) : editor(edito
     addAndMakeVisible(savePresetButton);
 
     savePresetButton.onClick = [this, &editor] {
-        FileChooser fc(("Save current preset"), editor.processor.getPresetsDirectory(), "*.blackFace");
+        FileChooser fc(("Save current preset"), editor.processor.getPresetsDirectory(), "*.BlackBird");
 
         if (fc.browseForFileToSave(true)) {
             MemoryBlock data;

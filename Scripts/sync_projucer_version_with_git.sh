@@ -9,11 +9,11 @@ project_dir="$scripts_dir/../"
 
 [[ -z "$PROJUCER_PATH" ]] && { echo "Error: PROJUCER_PATH not set"; exit 1; }
 
-$PROJUCER_PATH --set-version $version "$project_dir./BlackFace.jucer"
+$PROJUCER_PATH --set-version $version "$project_dir./BlackBird.jucer"
 
 sed -E -i "" "s/AppVersion=[^\n]+/AppVersion=$version/" \
-  "$project_dir/Releases/Windows/BlackFace-Win32.iss"
+  "$project_dir/Releases/Windows/BlackBird-Win32.iss"
 
 sed -E -i "" "s/AppVersion=[^\n]+/AppVersion=$version/" \
-  "$project_dir/Releases/Windows/BlackFace-x64.iss"
+  "$project_dir/Releases/Windows/BlackBird-x64.iss"
 	

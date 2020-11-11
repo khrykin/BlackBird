@@ -13,7 +13,7 @@
 
 #include <memory>
 
-BlackFaceAudioProcessorEditor::BlackFaceAudioProcessorEditor(BlackFaceAudioProcessor &p,
+BlackBirdAudioProcessorEditor::BlackBirdAudioProcessorEditor(BlackBirdAudioProcessor &p,
                                                              AudioProcessorValueTreeState &valueTreeState)
         : AudioProcessorEditor(&p),
           processor(p),
@@ -26,7 +26,7 @@ BlackFaceAudioProcessorEditor::BlackFaceAudioProcessorEditor(BlackFaceAudioProce
             masterSection.recommendedHeight() + headerHeight + 2.0f * padding);
 }
 
-void BlackFaceAudioProcessorEditor::setupControls() {
+void BlackBirdAudioProcessorEditor::setupControls() {
     using namespace DSPParametersConstants;
 
     addAndMakeVisible(oscillatorSection);
@@ -55,7 +55,7 @@ void BlackFaceAudioProcessorEditor::setupControls() {
     addParameterAsKnobToSection(masterSection, masterGainParameterID, "Gain");
 }
 
-Knob *BlackFaceAudioProcessorEditor::addParameterAsKnobToSection(Section &section,
+Knob *BlackBirdAudioProcessorEditor::addParameterAsKnobToSection(Section &section,
                                                                  const String &parameterID,
                                                                  const String &title) {
     auto *knob = new Knob(title);
@@ -64,7 +64,7 @@ Knob *BlackFaceAudioProcessorEditor::addParameterAsKnobToSection(Section &sectio
     return knob;
 }
 
-void BlackFaceAudioProcessorEditor::addKnobToSection(Section &section,
+void BlackBirdAudioProcessorEditor::addKnobToSection(Section &section,
                                                      Knob *knob,
                                                      const String &parameterID) {
     sliderAttachments.emplace_back(std::make_unique<SliderAttachment>(valueTreeState,
@@ -73,11 +73,11 @@ void BlackFaceAudioProcessorEditor::addKnobToSection(Section &section,
     section.addKnob(knob);
 }
 
-BlackFaceAudioProcessorEditor::~BlackFaceAudioProcessorEditor() {
+BlackBirdAudioProcessorEditor::~BlackBirdAudioProcessorEditor() {
     setLookAndFeel(nullptr);
 }
 
-void BlackFaceAudioProcessorEditor::paint(Graphics &g) {
+void BlackBirdAudioProcessorEditor::paint(Graphics &g) {
     g.fillAll(Colour(13, 13, 13));
 
     auto font = getDefaultBoldFont();
@@ -91,11 +91,11 @@ void BlackFaceAudioProcessorEditor::paint(Graphics &g) {
     rect.setHeight(headerHeight + padding);
     rect.setX(padding + 5);
 
-    g.drawText("BLACKFACE", rect, Justification::centredLeft, false);
+    g.drawText("BLACKBIRD", rect, Justification::centredLeft, false);
 
 }
 
-void BlackFaceAudioProcessorEditor::resized() {
+void BlackBirdAudioProcessorEditor::resized() {
     using Track = Grid::TrackInfo;
 
     Grid grid;

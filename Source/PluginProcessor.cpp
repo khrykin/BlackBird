@@ -13,7 +13,7 @@
 
 #pragma mark - Construction & Destruction
 
-BlackFaceAudioProcessor::BlackFaceAudioProcessor()
+BlackBirdAudioProcessor::BlackBirdAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
         : AudioProcessor(BusesProperties()
 #if !JucePlugin_IsMidiEffect
@@ -28,18 +28,18 @@ BlackFaceAudioProcessor::BlackFaceAudioProcessor()
 
 }
 
-BlackFaceAudioProcessor::~BlackFaceAudioProcessor() {
+BlackBirdAudioProcessor::~BlackBirdAudioProcessor() {
 }
 
 #pragma mark - Lifecycle
 
-void BlackFaceAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
+void BlackBirdAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
     _synth.prepare({sampleRate,
                     (uint32_t) samplesPerBlock,
                     (uint32_t) getTotalNumOutputChannels()});
 }
 
-void BlackFaceAudioProcessor::releaseResources() {
+void BlackBirdAudioProcessor::releaseResources() {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
@@ -48,7 +48,7 @@ void BlackFaceAudioProcessor::releaseResources() {
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 
-bool BlackFaceAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const {
+bool BlackBirdAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const {
 #if JucePlugin_IsMidiEffect
     ignoreUnused (layouts);
     return true;
@@ -71,11 +71,11 @@ bool BlackFaceAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts)
 
 #endif
 
-bool BlackFaceAudioProcessor::hasEditor() const {
+bool BlackBirdAudioProcessor::hasEditor() const {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-bool BlackFaceAudioProcessor::acceptsMidi() const {
+bool BlackBirdAudioProcessor::acceptsMidi() const {
 #if JucePlugin_WantsMidiInput
     return true;
 #else
@@ -83,7 +83,7 @@ bool BlackFaceAudioProcessor::acceptsMidi() const {
 #endif
 }
 
-bool BlackFaceAudioProcessor::producesMidi() const {
+bool BlackBirdAudioProcessor::producesMidi() const {
 #if JucePlugin_ProducesMidiOutput
     return true;
 #else
@@ -91,7 +91,7 @@ bool BlackFaceAudioProcessor::producesMidi() const {
 #endif
 }
 
-bool BlackFaceAudioProcessor::isMidiEffect() const {
+bool BlackBirdAudioProcessor::isMidiEffect() const {
 #if JucePlugin_IsMidiEffect
     return true;
 #else
@@ -101,7 +101,7 @@ bool BlackFaceAudioProcessor::isMidiEffect() const {
 
 #pragma mark - Processing Input
 
-void BlackFaceAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
+void BlackBirdAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages) {
     ScopedNoDenormals noDenormals;
     auto totalNumInputChannels = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -120,30 +120,30 @@ void BlackFaceAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
 
 #pragma mark - Getting Basic Properties
 
-const String BlackFaceAudioProcessor::getName() const {
+const String BlackBirdAudioProcessor::getName() const {
     return JucePlugin_Name;
 }
 
-const String BlackFaceAudioProcessor::getProgramName(int index) {
+const String BlackBirdAudioProcessor::getProgramName(int index) {
     return getPresetsNames()[index];
 }
 
-double BlackFaceAudioProcessor::getTailLengthSeconds() const {
+double BlackBirdAudioProcessor::getTailLengthSeconds() const {
     return 0.0;
 }
 
-int BlackFaceAudioProcessor::getNumPrograms() {
+int BlackBirdAudioProcessor::getNumPrograms() {
     auto numberOfPresets = getPresetsNames().size();
     return numberOfPresets != 0 ? numberOfPresets : 1;
     // NB: some hosts don't cope very well if you tell them there are 0 programs,
     // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int BlackFaceAudioProcessor::getCurrentProgram() {
+int BlackBirdAudioProcessor::getCurrentProgram() {
     return currentProgram;
 }
 
-void BlackFaceAudioProcessor::setCurrentProgram(int index) {
+void BlackBirdAudioProcessor::setCurrentProgram(int index) {
     silentlySetCurrentProgram(index);
 
     if (onProgramChange) {
@@ -151,7 +151,7 @@ void BlackFaceAudioProcessor::setCurrentProgram(int index) {
     }
 }
 
-void BlackFaceAudioProcessor::silentlySetCurrentProgram(int index) {
+void BlackBirdAudioProcessor::silentlySetCurrentProgram(int index) {
     currentProgram = index;
 
     auto presetName = getPresetsNames()[index];
@@ -159,18 +159,18 @@ void BlackFaceAudioProcessor::silentlySetCurrentProgram(int index) {
     loadPreset(presetName);
 }
 
-void BlackFaceAudioProcessor::changeProgramName(int index, const String &newName) {
+void BlackBirdAudioProcessor::changeProgramName(int index, const String &newName) {
 }
 
 #pragma mark - Accessing State Information
 
-void BlackFaceAudioProcessor::getStateInformation(MemoryBlock &destData) {
+void BlackBirdAudioProcessor::getStateInformation(MemoryBlock &destData) {
     auto state = valueTreeState.copyState();
     std::unique_ptr<XmlElement> xml(state.createXml());
     copyXmlToBinary(*xml, destData);
 }
 
-void BlackFaceAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
+void BlackBirdAudioProcessor::setStateInformation(const void *data, int sizeInBytes) {
     std::unique_ptr<XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 
     if (xmlState != nullptr)
@@ -180,7 +180,7 @@ void BlackFaceAudioProcessor::setStateInformation(const void *data, int sizeInBy
 
 #pragma mark - Handling Presets
 
-File BlackFaceAudioProcessor::getPresetsDirectory() {
+File BlackBirdAudioProcessor::getPresetsDirectory() {
     auto userDataFolder = File::getSpecialLocation(
             File::SpecialLocationType::commonApplicationDataDirectory)
             .getChildFile(getName());
@@ -200,8 +200,8 @@ File BlackFaceAudioProcessor::getPresetsDirectory() {
     return presetsFolder;
 }
 
-StringArray BlackFaceAudioProcessor::getPresetsNames() {
-    auto it = DirectoryIterator(getPresetsDirectory(), false, "*.blackFace");
+StringArray BlackBirdAudioProcessor::getPresetsNames() {
+    auto it = DirectoryIterator(getPresetsDirectory(), false, "*.blackBird");
 
     auto result = StringArray();
 
@@ -212,8 +212,8 @@ StringArray BlackFaceAudioProcessor::getPresetsNames() {
     return result;
 }
 
-void BlackFaceAudioProcessor::loadPreset(const String &presetName) {
-    auto presetPath = getPresetsDirectory().getChildFile(presetName + ".blackFace");
+void BlackBirdAudioProcessor::loadPreset(const String &presetName) {
+    auto presetPath = getPresetsDirectory().getChildFile(presetName + ".blackBird");
     auto presetFile = File(presetPath);
     MemoryBlock data;
 
@@ -229,13 +229,13 @@ void BlackFaceAudioProcessor::loadPreset(const String &presetName) {
 
 #pragma mark - Creating Editor Instance
 
-AudioProcessorEditor *BlackFaceAudioProcessor::createEditor() {
-    return new BlackFaceAudioProcessorEditor(*this, valueTreeState);
+AudioProcessorEditor *BlackBirdAudioProcessor::createEditor() {
+    return new BlackBirdAudioProcessorEditor(*this, valueTreeState);
 }
 
 #pragma mark - Accessing Synth Instance
 
-Synth &BlackFaceAudioProcessor::synth() {
+Synth &BlackBirdAudioProcessor::synth() {
     return _synth;
 }
 
@@ -243,5 +243,5 @@ Synth &BlackFaceAudioProcessor::synth() {
 
 // This creates new instances of the plugin..
 AudioProcessor *JUCE_CALLTYPE createPluginFilter() {
-    return new BlackFaceAudioProcessor();
+    return new BlackBirdAudioProcessor();
 }
