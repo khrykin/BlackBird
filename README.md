@@ -5,13 +5,15 @@ Simple, yet peculiar VST3/AU Synth
 ## Summary
 BlackBird is an analog-inspired software synthesizer. It features two oscillators, each with a choice of sine, saw, or pulse waveforms. It has one envelope that can be used to control velocity as well as the cutoff and resonance of the built-in low-pass filter. BlackBird also has a built-in reverb effect, and mod wheel functionality. Blackbird is available in AU and VST3 forms. 
 
-![Plugin window screenshot](https://raw.githubusercontent.com/khrykin/BlackBird/master/Promo/Screenshot.png)
+![Plugin window screenshot](https://raw.githubusercontent.com/khrykin/BlackBird/master/Promo/Screenshot.png) 
+
+Blackbird uses JUCE, a C++ framework  that aids in the creation of audio  plugins. More information about JUCE can be found on their website [here](https://juce.com/). 
 
 ## Installation
-If you just want to use BlackBird in your own compositions, please visit the [website](https://khrykin.github.io/BlackBird). Sound examples are available [here](https://soundcloud.com/khrykin/sets/BlackBird).
+If you just want to use BlackBird in your own compositions, please visit the [website](https://khrykin.github.io/BlackBird), where you can find installers for Windows. Once you have installed your AU or VST3 plugin, navigate from within your audio software to begin using the plugin. Sound examples are available [here](https://soundcloud.com/khrykin/sets/BlackBird).
 
 ## Setup
-BlackBird makes use of JUCE, a development framework for audio applications. More information about JUCE can be found on their [website](https://juce.com/). Fortunately, JUCE provides a utility called “the projucer” that makes setup of projects for development easy. This can be downloaded on the JUCE website [here](https://juce.com/get-juce/download). Once you have downloaded this, extract the folder and place it in a convenient location. Within this folder is an application called Projucer, which will allow you to open and manipulate JUCE projects.
+JUCE provides a utility called “the projucer” that makes setup of projects for development easy. This can be downloaded on the JUCE website [here](https://juce.com/get-juce/download). Once you have downloaded this, extract the folder and place it in a convenient location. Within this folder is an application called Projucer, which will allow you to open and manipulate JUCE projects.
 
 Inside Projucer, open BlackBird.jucer to begin building a project for your IDE. Use “File->Global paths…” to ensure that the JUCE and module paths are set correctly based on where you extracted your JUCE directory. If you wish to use different versions of JUCE modules, you can set individual paths in the Modules tab on the left. Once you have your settings selected, choose your exporter at the top of Projucer (Xcode or Visual Studio), and then click the button to the right of this selection to build your project. You can now begin development on BlackBird in your chosen IDE.
 
