@@ -14,7 +14,7 @@ Simple, yet peculiar VST3/AU Synth
 ### Prerequisites
 
 - A C++17-compliant compiler
-- [CMake](https://cmake.org/) See [CMakeLists.txt](./CMakeLists.txt#L1) for the recommended version.
+- [CMake](https://cmake.org/) (See [CMakeLists.txt](./CMakeLists.txt#L1) for the recommended version).
 - [Ninja](https://ninja-build.org/) (recommended)
 - Download and extract [JUCE@7.10.0](https://github.com/juce-framework/JUCE/releases/tag/7.0.10) into `./JUCE` in the repo root
 
