@@ -13,93 +13,74 @@
 #include <cmath>
 #include <thread>
 
-#include "../JuceLibraryCode/JuceHeader.h"
-
 #include "LookupTablesBank.h"
 
-template<typename ValueType>
-class VCAOscillator {
+template <typename ValueType> class VCAOscillator {
 public:
-    using Oscillator = dsp::Oscillator<ValueType>;
-    using LookupTablesBank = LookupTablesBank<ValueType>;
-    using Waveform = typename LookupTablesBank::Waveform;
+  using Oscillator = dsp::Oscillator<ValueType>;
+  using LookupTablesBank = LookupTablesBank<ValueType>;
+  using Waveform = typename LookupTablesBank::Waveform;
 
-    VCAOscillator() noexcept = default;
+  VCAOscillator() noexcept = default;
 
 #pragma mark - Initialization
 
-    void initialize(const LookupTablesBank &lookupTable) {
-        oscillator().initialise([this, &lookupTable](ValueType phase) {
-            return lookupTable(phase,
-                               currentWaveform,
-                               oscillator().getFrequency());
-        });
-    }
+  void initialize(const LookupTablesBank &lookupTable) {
+    oscillator().initialise([this, &lookupTable](ValueType phase) {
+      return lookupTable(phase, currentWaveform, oscillator().getFrequency());
+    });
+  }
 
 #pragma mark - Preparing for Operation
 
-    void prepare(const dsp::ProcessSpec &spec) {
-        processorChain.prepare(spec);
-        sampleRate = spec.sampleRate;
-    }
+  void prepare(const dsp::ProcessSpec &spec) {
+    processorChain.prepare(spec);
+    sampleRate = spec.sampleRate;
+  }
 
 #pragma mark - Setting Properties
 
-    void setWaveform(Waveform waveform) {
-        currentWaveform = waveform;
-    }
+  void setWaveform(Waveform waveform) { currentWaveform = waveform; }
 
-    void setFrequency(ValueType newValue) {
-        const auto nyquistFrequency = 0.5 * sampleRate;
-        if (newValue > nyquistFrequency)
-            newValue = nyquistFrequency;
+  void setFrequency(ValueType newValue) {
+    const auto nyquistFrequency = 0.5 * sampleRate;
+    if (newValue > nyquistFrequency)
+      newValue = nyquistFrequency;
 
-        oscillator().setFrequency(newValue, true);
-    }
+    oscillator().setFrequency(newValue, true);
+  }
 
-    void setLevel(ValueType newValue) {
-        gainProcessor().setGainLinear(newValue);
-    }
+  void setLevel(ValueType newValue) { gainProcessor().setGainLinear(newValue); }
 
-    void setRampDurationSeconds(double duration) {
-        gainProcessor().setRampDurationSeconds(duration);
-    }
+  void setRampDurationSeconds(double duration) {
+    gainProcessor().setRampDurationSeconds(duration);
+  }
 
 #pragma mark - Resetting Processing
 
-    void reset() noexcept {
-        processorChain.reset();
-    }
+  void reset() noexcept { processorChain.reset(); }
 
 #pragma mark - Processing Audio Context
 
-    template<typename ProcessContext>
-    void process(const ProcessContext &context) noexcept {
-        processorChain.process(context);
-    }
+  template <typename ProcessContext>
+  void process(const ProcessContext &context) noexcept {
+    processorChain.process(context);
+  }
 
 private:
-    enum {
-        oscIndex,
-        gainIndex
-    };
+  enum { oscIndex, gainIndex };
 
-    Waveform currentWaveform{};
+  Waveform currentWaveform{};
 
-    double sampleRate = 0;
+  double sampleRate = 0;
 
-    dsp::ProcessorChain<
-        Oscillator,
-        dsp::Gain<ValueType>
-    > processorChain;
+  dsp::ProcessorChain<Oscillator, dsp::Gain<ValueType>> processorChain;
 
 #pragma mark - Accessing Processors
 
-    Oscillator &oscillator() {
-        return processorChain.template get<oscIndex>();
-    }
+  Oscillator &oscillator() { return processorChain.template get<oscIndex>(); }
 
-    dsp::Gain<ValueType> &gainProcessor() {
-        return processorChain.template get<gainIndex>();
-    }
+  dsp::Gain<ValueType> &gainProcessor() {
+    return processorChain.template get<gainIndex>();
+  }
 };
