@@ -2,6 +2,7 @@
 
 # Builds and runs the standalone app on macOS
 
+set -o errexit
 cmake --build Build
 osascript -e 'quit app "BlackBird"'
 sleep 1
