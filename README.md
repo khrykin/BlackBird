@@ -16,6 +16,7 @@ Simple, yet peculiar VST3/AU Synth
 - A C++17-compliant compiler
 - [CMake](https://cmake.org/) See [CMakeLists.txt](./CMakeLists.txt#L1) for the recommended version.
 - [Ninja](https://ninja-build.org/) (recommended)
+- [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 - Download and extract [JUCE@7.10.0](https://github.com/juce-framework/JUCE/releases/tag/7.0.10) into `./JUCE` in the repo root
 
 To be able to conveniently test the audio output during development (e.g. check the spectrum of the audio), you can route the audio from the standalone app into a DAW of your choice. Click Options -> Audio/MIDI Settings in the standalone app's UI to set up the audio output. E.g. on macOS, you can use
