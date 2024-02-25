@@ -4,7 +4,7 @@
 
 Simple, yet peculiar VST3/AU Synth
 
-![Plugin window screenshot](https://raw.githubusercontent.com/khrykin/BlackBird/master/promo/Screenshot.png)
+![Plugin window screenshot](https://raw.githubusercontent.com/khrykin/BlackBird/main/promo/Screenshot.png)
 
 ## Contributing
 
