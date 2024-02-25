@@ -14,7 +14,7 @@ Simple, yet peculiar VST3/AU Synth
 ### Prerequisites
 
 - A C++17-compliant compiler
-- [CMake](https://cmake.org/) (See [CMakeLists.txt](./CMakeLists.txt#L1) for the recommended version).
+- [CMake](https://cmake.org/) (See [CMakeLists.txt](./CMakeLists.txt#L1) for the recommended version)
 - [Ninja](https://ninja-build.org/) (recommended)
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 
