@@ -10,58 +10,58 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "LookAndFeel.h"
+#include <juce_gui_basics/juce_gui_basics.h>
 
+using namespace juce;
 
 #pragma mark - Knob
 
 class Knob : public Component {
 public:
-    static constexpr auto defaultSize = 110.0f;
+  static constexpr auto defaultSize = 110.0f;
 
 #pragma mark - Construction
 
-    explicit Knob(const String &title, unsigned int width = 1);
-    ~Knob() override;
+  explicit Knob(const String &title, unsigned int width = 1);
+  ~Knob() override;
 
 #pragma mark - Acessing Private Instances
 
-    Slider &slider();
+  Slider &slider();
 
 #pragma mark - Geometry
 
-    float minWidth();
-    float minHeight();
+  float minWidth();
+  float minHeight();
 
-    int widthFactor() const;
-    void setWidthFactor(int width);
+  int widthFactor() const;
+  void setWidthFactor(int width);
 
 #pragma mark - Virtual Methods Overrides
 
-    void paint(Graphics &g) override;
-    void resized() override;
+  void paint(Graphics &g) override;
+  void resized() override;
 
 protected:
-    static constexpr auto labelHeight = 20.0f;
-    static constexpr auto fontHeight = 16.0f;
+  static constexpr auto labelHeight = 20.0f;
+  static constexpr auto fontHeight = 16.0f;
 
-    Slider _slider;
-    KnobLookAndFeel knobLookAndFeel;
+  Slider _slider;
+  KnobLookAndFeel knobLookAndFeel;
 
-    int _widthFactor = 1;
+  int _widthFactor = 1;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Knob)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Knob)
 };
 
 #pragma mark - OscillatorKnob
 
 class OscillatorKnob : public Knob {
 public:
-    static constexpr auto sliderName = "OscillatorSlider";
+  static constexpr auto sliderName = "OscillatorSlider";
 
-    explicit OscillatorKnob(const String &title, unsigned int width = 1);
+  explicit OscillatorKnob(const String &title, unsigned int width = 1);
 
-    void resized() override;
+  void resized() override;
 };
-

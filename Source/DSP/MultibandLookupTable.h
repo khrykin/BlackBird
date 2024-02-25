@@ -10,96 +10,99 @@
 
 #pragma once
 
+#include "Utility.h"
+#include <array>
 #include <cassert>
 #include <cmath>
-#include <array>
+#include <functional>
+#include <juce_core/juce_core.h>
+#include <juce_dsp/juce_dsp.h>
 
-#include "../JuceLibraryCode/JuceHeader.h"
-
-#include "Utility.h"
+using namespace juce;
 
 /**
- * This class combines lookup tables for several frequency bands into one callable entity.
+ * This class combines lookup tables for several frequency bands into one
+ * callable entity.
  */
-template<typename FloatType>
-class MultibandLookupTable {
+template <typename FloatType> class MultibandLookupTable {
 public:
-    using TableGenerator = std::function<FloatType(FloatType maxFrequency, FloatType value)>;
+  using TableGenerator =
+      std::function<FloatType(FloatType maxFrequency, FloatType value)>;
 
-    static constexpr auto pi = MathConstants<FloatType>::pi;
+  static constexpr auto pi = MathConstants<FloatType>::pi;
 
 #pragma mark - Initialization
 
-    MultibandLookupTable() = default;
+  MultibandLookupTable() = default;
 
-    void setTable(const TableGenerator &tableGenerator, int tableSize) {
-        forEachBand([=](int bandIndex) {
-            auto bandTableGenerator = [=](FloatType phase) {
-                auto maxFrequency = bandMaxFrequencies[bandIndex];
-                return tableGenerator(maxFrequency, phase);
-            };
+  void setTable(const TableGenerator &tableGenerator, int tableSize) {
+    forEachBand([=](int bandIndex) {
+      auto bandTableGenerator = [=](FloatType phase) {
+        auto maxFrequency = bandMaxFrequencies[bandIndex];
+        return tableGenerator(maxFrequency, phase);
+      };
 
-            tables[bandIndex] = std::make_unique<dsp::LookupTableTransform<FloatType>>(bandTableGenerator,
-                                                                                       -pi, pi,
-                                                                                       tableSize);
-        });
-    }
+      tables[bandIndex] =
+          std::make_unique<dsp::LookupTableTransform<FloatType>>(
+              bandTableGenerator, -pi, pi, tableSize);
+    });
+  }
 
 #pragma mark - Call Operator
 
-    FloatType operator()(FloatType phase, FloatType frequency) const {
-        assert(tables[0] != nullptr && "setTable() must be called before operator()");
+  FloatType operator()(FloatType phase, FloatType frequency) const {
+    assert(tables[0] != nullptr &&
+           "setTable() must be called before operator()");
 
-        auto bandIndex = bandForFrequency(frequency);
+    auto bandIndex = bandForFrequency(frequency);
 
-        return (*tables[bandIndex])(phase);
-    }
+    return (*tables[bandIndex])(phase);
+  }
 
 private:
-    using SingleBandLookupTable = dsp::LookupTableTransform<FloatType>;
+  using SingleBandLookupTable = dsp::LookupTableTransform<FloatType>;
 
 #pragma mark - Bands Frequencies
 
-    static constexpr std::array bandMaxFrequencies
-        = std::to_array<FloatType>({
-                                       60,     // Sub
-                                       250,    // Bass
-                                       500,    // LowMid
-                                       1000,   //
-                                       2000,   // Mid
-                                       3000,   //
-                                       4000,   // UpperMid
-                                       5000,   //
-                                       6000,   // Presence
-                                       20000   // Brilliance
-                                   });
+  static constexpr std::array bandMaxFrequencies = std::to_array<FloatType>({
+      60,   // Sub
+      250,  // Bass
+      500,  // LowMid
+      1000, //
+      2000, // Mid
+      3000, //
+      4000, // UpperMid
+      5000, //
+      6000, // Presence
+      20000 // Brilliance
+  });
 
-    static constexpr auto numberOfBands = bandMaxFrequencies.size();
+  static constexpr auto numberOfBands = bandMaxFrequencies.size();
 
 #pragma mark - Private Members
 
-    std::array<std::unique_ptr<SingleBandLookupTable>, numberOfBands> tables;
+  std::array<std::unique_ptr<SingleBandLookupTable>, numberOfBands> tables;
 
 #pragma mark - Resolving Frequency Band
 
-    static constexpr int bandForFrequency(FloatType frequency) {
-        for (auto &maxFrequency : bandMaxFrequencies) {
-            auto bandIndex = &maxFrequency - &bandMaxFrequencies[0];
-            auto band = static_cast<int>(bandIndex);
+  static constexpr int bandForFrequency(FloatType frequency) {
+    for (auto &maxFrequency : bandMaxFrequencies) {
+      auto bandIndex = &maxFrequency - &bandMaxFrequencies[0];
+      auto band = static_cast<int>(bandIndex);
 
-            if (frequency < maxFrequency) {
-                return band;
-            }
-        }
-
-        return numberOfBands - 1;
+      if (frequency < maxFrequency) {
+        return band;
+      }
     }
+
+    return numberOfBands - 1;
+  }
 
 #pragma mark - Iterating Frequency Bands
 
-    void forEachBand(const std::function<void(int)> &fn) {
-        for (int band = 0; band < numberOfBands; band++) {
-            fn(band);
-        }
+  void forEachBand(const std::function<void(int)> &fn) {
+    for (int band = 0; band < numberOfBands; band++) {
+      fn(band);
     }
+  }
 };

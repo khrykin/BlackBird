@@ -10,33 +10,37 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
 #include "LookAndFeel.h"
+
+#include <juce_gui_basics/juce_gui_basics.h>
+
+using namespace juce;
 
 class BlackBirdAudioProcessorEditor;
 class EditorHeader : public Component {
 public:
-    explicit EditorHeader(BlackBirdAudioProcessorEditor &editor);
-    ~EditorHeader() override;
+  explicit EditorHeader(BlackBirdAudioProcessorEditor &editor);
+  ~EditorHeader() override;
 
-    void resized() override;
+  void resized() override;
 
-    static constexpr auto nextPresetButtonName = "nextPresetButtonName";
-    static constexpr auto previousPresetButtonName = "previousPresetButtonName";
+  static constexpr auto nextPresetButtonName = "nextPresetButtonName";
+  static constexpr auto previousPresetButtonName = "previousPresetButtonName";
+
 private:
-    static constexpr auto presetsListWidth = 200.0f;
+  static constexpr auto presetsListWidth = 200.0f;
 
-    BlackBirdAudioProcessorEditor &editor;
+  BlackBirdAudioProcessorEditor &editor;
 
-    ComboBox presetsList;
+  ComboBox presetsList;
 
-    TextButton nextPresetButton{">"};
-    TextButton previousPresetButton{"<"};
-    TextButton savePresetButton{"Save"};
+  TextButton nextPresetButton{">"};
+  TextButton previousPresetButton{"<"};
+  TextButton savePresetButton{"Save"};
 
-    HeaderLookAndFeel lookAndFeel;
+  HeaderLookAndFeel lookAndFeel;
 
-    void updatePresetsList(const String &newSelectedPreset);
+  void updatePresetsList(const String &newSelectedPreset);
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (EditorHeader)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EditorHeader)
 };
