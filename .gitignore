@@ -3,3 +3,6 @@ Build
 JuceLibraryCode
 docs/.jekyll-cache
 JUCE
+
+# clang cache
+.cache

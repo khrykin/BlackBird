@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# Builds and runs the standalone app on macOS
+
+cmake --build Build
+osascript -e 'quit app "BlackBird"'
+sleep 1
+open Build/BlackBird_artefacts/Standalone/BlackBird.app/
