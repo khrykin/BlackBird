@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 # TODO: Copy version from a Git tag
 project(BlackBird VERSION 0.0.1)
 
-# TODO:
+# TODO: Enable warnings
 add_definitions(-w)
 
 set(CXX_STANDARD 17)
