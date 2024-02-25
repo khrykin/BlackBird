@@ -15,13 +15,14 @@ Simple, yet peculiar VST3/AU Synth
 
 - A C++17-compliant compiler
 - [CMake](https://cmake.org/) (See [CMakeLists.txt](./CMakeLists.txt#L1) for the recommended version)
-- [Ninja](https://ninja-build.org/) (recommended)
+- [Ninja](https://ninja-build.org/) _(recommended)_
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
 
   - Install the pre-commit hook for formatting:
     ```
     cp ./pre-commit .git/hooks/pre-commit
     ```
+  - Setup auto-format on save in your IDE (make sure it uses `clang-format`) _(recommended)_
 
 - Download and extract [JUCE@7.10.0](https://github.com/juce-framework/JUCE/releases/tag/7.0.10) into `./JUCE` in the repo root
 
