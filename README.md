@@ -8,7 +8,7 @@ Simple, yet peculiar VST3/AU Synth
 
 ## Contributing
 
-> [!INFO]
+> [!NOTE]
 > The development environment is optimized only for macOS for the time being.
 
 ### Prerequisites
