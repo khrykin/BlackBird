@@ -36,7 +36,7 @@ Then to build:
 cmake --build Build
 ```
 
-To conveniently build and re-start the standalone app on macOS:
+To conveniently build and restart the standalone app on macOS:
 
 ```
 ./macos_rerun
