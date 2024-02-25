@@ -38,7 +38,7 @@
 										<key>GID</key>
 										<integer>80</integer>
 										<key>PATH</key>
-										<string>../../Builds/MacOSX/build/Release/BlackBird.app</string>
+										<string>../../build/MacOSX/build/Release/BlackBird.app</string>
 										<key>PATH_TYPE</key>
 										<integer>1</integer>
 										<key>PERMISSIONS</key>
@@ -106,7 +106,7 @@
 												<key>GID</key>
 												<integer>0</integer>
 												<key>PATH</key>
-												<string>../../Resources/Presets</string>
+												<string>../../resources/Presets</string>
 												<key>PATH_TYPE</key>
 												<integer>1</integer>
 												<key>PERMISSIONS</key>
@@ -614,7 +614,7 @@
 																<key>GID</key>
 																<integer>0</integer>
 																<key>PATH</key>
-																<string>../../Builds/MacOSX/build/Release/BlackBird.component</string>
+																<string>../../build/MacOSX/build/Release/BlackBird.component</string>
 																<key>PATH_TYPE</key>
 																<integer>1</integer>
 																<key>PERMISSIONS</key>
@@ -691,7 +691,7 @@
 												<key>GID</key>
 												<integer>0</integer>
 												<key>PATH</key>
-												<string>../../Resources/Presets</string>
+												<string>../../resources/Presets</string>
 												<key>PATH_TYPE</key>
 												<integer>1</integer>
 												<key>PERMISSIONS</key>
@@ -1199,7 +1199,7 @@
 																<key>GID</key>
 																<integer>0</integer>
 																<key>PATH</key>
-																<string>../../Builds/MacOSX/build/Release/BlackBird.vst3</string>
+																<string>../../build/MacOSX/build/Release/BlackBird.vst3</string>
 																<key>PATH_TYPE</key>
 																<integer>1</integer>
 																<key>PERMISSIONS</key>
@@ -1276,7 +1276,7 @@
 												<key>GID</key>
 												<integer>0</integer>
 												<key>PATH</key>
-												<string>../../Resources/Presets</string>
+												<string>../../resources/Presets</string>
 												<key>PATH_TYPE</key>
 												<integer>1</integer>
 												<key>PERMISSIONS</key>
@@ -1931,7 +1931,7 @@
 								<key>GID</key>
 								<integer>0</integer>
 								<key>PATH</key>
-								<string>../../Resources/Presets/.DS_Store</string>
+								<string>../../resources/Presets/.DS_Store</string>
 								<key>PATH_TYPE</key>
 								<integer>1</integer>
 								<key>PERMISSIONS</key>
@@ -1947,7 +1947,7 @@
 								<key>GID</key>
 								<integer>0</integer>
 								<key>PATH</key>
-								<string>../../Resources/Presets/_INIT_.blackBird</string>
+								<string>../../resources/Presets/_INIT_.blackBird</string>
 								<key>PATH_TYPE</key>
 								<integer>1</integer>
 								<key>PERMISSIONS</key>
@@ -1963,7 +1963,7 @@
 								<key>GID</key>
 								<integer>0</integer>
 								<key>PATH</key>
-								<string>../../Resources/Presets/Big Reso.blackBird</string>
+								<string>../../resources/Presets/Big Reso.blackBird</string>
 								<key>PATH_TYPE</key>
 								<integer>1</integer>
 								<key>PERMISSIONS</key>
@@ -1979,7 +1979,7 @@
 								<key>GID</key>
 								<integer>0</integer>
 								<key>PATH</key>
-								<string>../../Resources/Presets/Long Attack.blackBird</string>
+								<string>../../resources/Presets/Long Attack.blackBird</string>
 								<key>PATH_TYPE</key>
 								<integer>1</integer>
 								<key>PERMISSIONS</key>
@@ -1995,7 +1995,7 @@
 						<key>GID</key>
 						<integer>0</integer>
 						<key>PATH</key>
-						<string>../../Resources/Presets</string>
+						<string>../../resources/Presets</string>
 						<key>PATH_TYPE</key>
 						<integer>1</integer>
 						<key>PERMISSIONS</key>

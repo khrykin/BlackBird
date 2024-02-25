@@ -5,5 +5,5 @@ project_dir="$scripts_dir/../"
 
 "$scripts_dir/sync_projucer_version_with_git.sh"
 
-xcodebuild -project "$project_dir/Builds/MacOSX/BlackBird.xcodeproj" -scheme "BlackBird - All" -configuration Release build
+xcodebuild -project "$project_dir/build/MacOSX/BlackBird.xcodeproj" -scheme "BlackBird - All" -configuration Release build
 packagesbuild "$project_dir/Releases/MacOS/BlackBird.pkgproj"

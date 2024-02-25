@@ -4,7 +4,7 @@
 
 Simple, yet peculiar VST3/AU Synth
 
-![Plugin window screenshot](https://raw.githubusercontent.com/khrykin/BlackBird/master/Promo/Screenshot.png)
+![Plugin window screenshot](https://raw.githubusercontent.com/khrykin/BlackBird/master/promo/Screenshot.png)
 
 ## Contributing
 
@@ -34,14 +34,14 @@ To be able to conveniently test the audio output during development (e.g. check 
 Prepare the build system with:
 
 ```
-mkdir Build
-cmake -B Build -G Ninja
+mkdir build
+cmake -B build -G Ninja
 ```
 
 Then to build:
 
 ```
-cmake --build Build
+cmake --build build
 ```
 
 To conveniently build and restart the standalone app on macOS:

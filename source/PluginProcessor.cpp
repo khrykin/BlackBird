@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "UI/PluginEditor.h"
+#include "ui/PluginEditor.h"
 
 #pragma mark - Construction & Destruction
 

@@ -39,18 +39,18 @@ juce_add_plugin(BlackBird
 
 target_include_directories(BlackBird
     PRIVATE
-    Source/UI
-    Source/DSP)
+    source/ui
+    source/dsp)
 
 target_sources(BlackBird
     PRIVATE
-    Source/DSP/DSPParameters.cpp
-    Source/UI/EditorHeader.cpp
-    Source/UI/Knob.cpp
-    Source/UI/PluginEditor.cpp
-    Source/UI/LookAndFeel.cpp
-    Source/UI/Section.cpp
-    Source/PluginProcessor.cpp)
+    source/dsp/DSPParameters.cpp
+    source/ui/EditorHeader.cpp
+    source/ui/Knob.cpp
+    source/ui/PluginEditor.cpp
+    source/ui/LookAndFeel.cpp
+    source/ui/Section.cpp
+    source/PluginProcessor.cpp)
 
 target_compile_definitions(BlackBird
     PRIVATE
@@ -76,11 +76,11 @@ target_compile_definitions(BlackBird
 # Conversion to binary-data will happen when your target is built.
 juce_add_binary_data(AudioPluginData
     SOURCES
-    Resources/Jost-600-Semi.ttf
-    Resources/Jost-700-Bold.ttf
-    Resources/sawwave.svg
-    Resources/sinewave.svg
-    Resources/squarewave.svg)
+    resources/Jost-600-Semi.ttf
+    resources/Jost-700-Bold.ttf
+    resources/sawwave.svg
+    resources/sinewave.svg
+    resources/squarewave.svg)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_audio_utils` module. Inter-module

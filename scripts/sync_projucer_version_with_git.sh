@@ -12,8 +12,8 @@ project_dir="$scripts_dir/../"
 $PROJUCER_PATH --set-version $version "$project_dir./BlackBird.jucer"
 
 sed -E -i "" "s/AppVersion=[^\n]+/AppVersion=$version/" \
-  "$project_dir/Releases/Windows/BlackBird-Win32.iss"
+  "$project_dir/releases/Windows/BlackBird-Win32.iss"
 
 sed -E -i "" "s/AppVersion=[^\n]+/AppVersion=$version/" \
-  "$project_dir/Releases/Windows/BlackBird-x64.iss"
+  "$project_dir/releases/Windows/BlackBird-x64.iss"
 	
