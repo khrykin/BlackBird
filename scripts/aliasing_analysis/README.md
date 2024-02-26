@@ -1,5 +1,8 @@
 # Exploring LadderFilter aliasing issue
 
+`nonlinearity.ipynb` demonstrates how `tanh(x)` function produces new
+frequency components and how aliasing phenomenon looks like at various
+frequencies and magnitudes.
 
 ## Configuring Python environment
 
@@ -15,4 +18,4 @@ conda env create -f environment.yml
 conda activate black-bird
 ```
 
-VSCode is a recommended editor/IDE. 
+VSCode is the recommended editor/IDE. 
