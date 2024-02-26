@@ -127,7 +127,7 @@ public:
         1.0f - (*parameters.velocityEnvelopeAmount) * (1.0f - velocity);
 
     firstOscillator().setLevel(currentVelocity);
-    firstOscillator().setLevel(currentVelocity);
+    secondOscillator().setLevel(currentVelocity);
 
     if (modulationAmount > 0.0f) {
       updateModulation();
