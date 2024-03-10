@@ -1,7 +1,7 @@
 # Exploring LadderFilter aliasing issue
 
 `nonlinearity.ipynb` demonstrates how `tanh(x)` function produces new
-frequency components and how aliasing phenomenon looks like at various
+frequency components and how the aliasing phenomenon looks like at various
 frequencies and magnitudes.
 
 ## Configuring Python environment
