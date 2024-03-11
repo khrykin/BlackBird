@@ -34,3 +34,19 @@ def calc_spectrum(sig, fs=1):
     f = fft.rfftfreq(len(sig), d=1/fs)
 
     return f, S
+
+
+def upsample_fft(signal, upsample_factor):
+    fft_signal = fft.rfft(signal)
+
+    zeros_to_insert = np.zeros((upsample_factor - 1) * len(fft_signal))
+    fft_upsampled = np.concatenate((fft_signal, zeros_to_insert))
+    upsampled_signal = fft.irfft(fft_upsampled, n=upsample_factor*len(signal)) * upsample_factor
+    return upsampled_signal
+
+
+def downsample_fft(signal, downsample_factor):
+    fft_signal = fft.rfft(signal)
+    fft_downsampled = fft_signal[:(len(fft_signal) // downsample_factor)]
+    downsampled_signal = fft.irfft(fft_downsampled, n=len(signal)//downsample_factor) / downsample_factor
+    return downsampled_signal
