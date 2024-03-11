@@ -1,4 +1,4 @@
-name: black-bird-test
+name: black-bird
 channels:
   - conda-forge
   - defaults
