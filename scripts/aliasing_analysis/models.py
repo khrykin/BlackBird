@@ -15,7 +15,7 @@ class LutWithMemory(nn.Module):
         lower_indices = X_normalized.floor().long()
         upper_indices = torch.clamp(lower_indices + 1, max=self.bins_num-1)
 
-        y_pred = torch.zeros((X_normalized.shape[1], 1))
+        y_pred = torch.zeros((X_normalized.shape[1], 1), device=X_normalized.device)
 
         for mem_ind in range(1+self.memory_depth):
             lower_embeddings = self.embeddings[mem_ind](lower_indices[mem_ind,:])
@@ -27,3 +27,4 @@ class LutWithMemory(nn.Module):
             y_pred += lut_out * X[mem_ind,:].unsqueeze(-1)
 
         return y_pred
+
