@@ -45,6 +45,7 @@ target_include_directories(BlackBird
 target_sources(BlackBird
     PRIVATE
     source/dsp/DSPParameters.cpp
+    source/dsp/LadderFilter.cpp
     source/ui/EditorHeader.cpp
     source/ui/Knob.cpp
     source/ui/PluginEditor.cpp

@@ -11,6 +11,7 @@
 #pragma once
 
 #include "DSPParameters.h"
+#include "LadderFilter.h"
 #include "LookupTablesBank.h"
 #include "VCAOscillator.h"
 #include <juce_audio_basics/juce_audio_basics.h>
@@ -222,7 +223,7 @@ private:
   };
 
   dsp::ProcessorChain<VCAOscillator<float>, VCAOscillator<float>,
-                      dsp::LadderFilter<float>, dsp::Gain<float>>
+                      blackbird::dsp::LadderFilter<float>, dsp::Gain<float>>
       processorChain;
 
   dsp::Oscillator<float> lfo;
@@ -241,7 +242,7 @@ private:
 
   dsp::Gain<float> &gainProcessor() { return processorChain.get<gainIndex>(); }
 
-  dsp::LadderFilter<float> &filter() {
+  blackbird::dsp::LadderFilter<float> &filter() {
     return processorChain.get<filterIndex>();
   }
 
