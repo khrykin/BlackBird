@@ -86,7 +86,6 @@ public:
     // Initialize Oscillators
 
     firstOscillator().initialize(lookupTable);
-    secondOscillator().initialize(lookupTable);
 
     processorChain.prepare(spec);
 
@@ -98,7 +97,6 @@ public:
     adsr.setSampleRate(lfoSampleRate);
 
     firstOscillator().setRampDurationSeconds(lfoSampleDuration);
-    secondOscillator().setRampDurationSeconds(lfoSampleDuration);
 
     gainProcessor().setGainLinear(1.0 - gainHeadroom);
 
@@ -128,11 +126,6 @@ public:
         1.0f - (*parameters.velocityEnvelopeAmount) * (1.0f - velocity);
 
     firstOscillator().setLevel(currentVelocity);
-    firstOscillator().setLevel(currentVelocity);
-
-    if (modulationAmount > 0.0f) {
-      updateModulation();
-    }
 
     updateADSRParameters();
 
@@ -207,8 +200,6 @@ private:
   float currentFilterDrive = *parameters.filterDrive;
 
   float currentOsc1Frequency = 0.0;
-  float currentOsc2Frequency = 0.0;
-  float currentOsc2AnalogFactor = 0.0;
 
   Waveform currentWaveform =
       static_cast<Waveform>(static_cast<int>(*parameters.oscillatorWaveform));
@@ -217,13 +208,12 @@ private:
 
   enum {
     osc1Index,
-    osc2Index,
     filterIndex,
     gainIndex,
   };
 
-  dsp::ProcessorChain<VCAOscillator<float>, VCAOscillator<float>,
-                      blackbird::dsp::LadderFilter<float>, dsp::Gain<float>>
+  dsp::ProcessorChain<VCAOscillator<float>, blackbird::dsp::LadderFilter<float>,
+                      dsp::Gain<float>>
       processorChain;
 
   dsp::Oscillator<float> lfo;
@@ -234,10 +224,6 @@ private:
 
   VCAOscillator<float> &firstOscillator() {
     return processorChain.get<osc1Index>();
-  }
-
-  VCAOscillator<float> &secondOscillator() {
-    return processorChain.get<osc2Index>();
   }
 
   dsp::Gain<float> &gainProcessor() { return processorChain.get<gainIndex>(); }
@@ -259,14 +245,7 @@ private:
     updateLevelWithADSRSample(nextADSRSample);
     updateFilterWithADSRSample(nextADSRSample);
 
-    updateModulation();
-
     processorChain.process(context);
-  }
-
-  static float analogFactor() {
-    return (Random::getSystemRandom().nextBool() ? 1.0f : -1.0f) *
-           maxAnalogFactor * Random::getSystemRandom().nextFloat();
   }
 
   static double getBendedFrequencyForWheel(int newPitchWheelValue,
@@ -311,7 +290,6 @@ private:
         static_cast<Waveform>(static_cast<int>(*parameters.oscillatorWaveform));
 
     firstOscillator().setWaveform(currentWaveform);
-    secondOscillator().setWaveform(currentWaveform);
   }
 
   void updateADSRParameters() {
@@ -320,31 +298,14 @@ private:
   }
 
   void updateOscillatorsFrequency() {
-    currentOsc1Frequency = currentNoteFrequency * (1.0f + analogFactor());
-    currentOsc2AnalogFactor = analogFactor();
-    currentOsc2Frequency =
-        currentNoteFrequency *
-        (1.0f + maxDetuningFactor * (*parameters.detuningAmount) *
-                    currentOsc2AnalogFactor);
-
-    currentDetuningAmount = *parameters.detuningAmount;
-
+    currentOsc1Frequency = currentNoteFrequency;
     firstOscillator().setFrequency(currentOsc1Frequency);
-    secondOscillator().setFrequency(currentOsc2Frequency);
   }
 
   void updateFilterDrive() {
     currentFilterDrive = *parameters.filterDrive;
 
     filter().setDrive(currentFilterDrive);
-  }
-
-  void updateModulation() {
-    secondOscillator().setFrequency(
-        currentOsc2Frequency *
-        (1.0 + modulationAmount * lfo.processSample(0.0f) *
-                   (maxDetuningFactor - defaultDetuningFactor) *
-                   maxAnalogFactor));
   }
 
   void updateFilterWithADSRSample(float nextADSRSample) {
@@ -372,7 +333,6 @@ private:
         nextADSRSample;
 
     firstOscillator().setLevel(envelopeVelocityValue);
-    secondOscillator().setLevel(envelopeVelocityValue);
   }
 
 #pragma mark - Note Lifecycle
@@ -389,7 +349,6 @@ private:
 
   void setProcessorsBypassed(bool bypassed) {
     processorChain.template setBypassed<osc1Index>(bypassed);
-    processorChain.template setBypassed<osc2Index>(bypassed);
 
     filter().setEnabled(!bypassed);
   }
